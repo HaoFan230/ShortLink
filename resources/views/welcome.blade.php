@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>SHORTLINK</title>
+        <title>ShortLink</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -48,6 +48,16 @@
                 font-size: 84px;
             }
 
+            .links > a {
+                color: #636b6f;
+                padding: 0 25px;
+                font-size: 13px;
+                font-weight: 600;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+            }
+
             .m-b-md {
                 margin-bottom: 30px;
             }
@@ -61,7 +71,8 @@
                 </div>
 
                 <div class="links">
-                    <p>短链接创建平台,创建即分享</p>
+                    <p>一个简单方便的短链接创建平台</p>
+                    <a href="{{ route('login.index') }}">点击登录</a>
                 </div>
             </div>
         </div>

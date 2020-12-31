@@ -27,4 +27,5 @@ Route::group(['prefix'=>'auth'],function() {
 // 仪表盘等后台路由
 Route::group(['prefix'=>'dashboard','middleware'=>['auth','CheckUserStatus']],function() {
     Route::resource('home','Page\Dashboard\HomeController');
+    Route::resource('links','Page\Dashboard\LinksController');
 });

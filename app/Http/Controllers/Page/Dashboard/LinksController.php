@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use ViewUtils;
 
-class HomeController extends Controller
+class LinksController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,12 +18,12 @@ class HomeController extends Controller
 
         $viewConfig = ViewUtils::generateConfig([
             'pageInfo'=>[
-                'title'=>'仪表盘',
-                'description'=>'浏览一下今日的情况',
-            ]
+                'title'=>'短链接',
+                'description'=>'注意短链接的时效性',
+            ],
         ]);
 
-        return view('Dashboard.home',$viewConfig);
+        return view('Dashboard.Links.home',$viewConfig); 
     }
 
     /**
@@ -33,7 +33,15 @@ class HomeController extends Controller
      */
     public function create()
     {
-        //
+        $viewConfig = ViewUtils::generateConfig([
+            'pageInfo'=>[
+                'title'=>'短链接',
+                'description'=>'创建链接',
+            ],
+            'showBackButton'=> true,
+        ]);
+
+        return view('Dashboard.Links.create',$viewConfig); 
     }
 
     /**
