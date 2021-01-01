@@ -17,6 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// 验证邮箱
+Route::resource('/checkemail','Page\Auth\CheckEmailController');
+
 // 这里分组的路由都跟用户认证有关
 Route::group(['prefix'=>'auth'],function() {
     Route::resource('register','Page\Auth\RegisterController');

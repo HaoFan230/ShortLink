@@ -55,7 +55,7 @@
                     <thead>
                         <tr class="text-secondary">
                             <th><input type="checkbox"></th>
-                            <th>ID</th>
+                            <th>关键字</th>
                             <th>目标URL</th>
                             <th>创建时间</th>
                             <th>过期时间</th>
@@ -69,37 +69,12 @@
                             <td><input type="checkbox"></td>
                             <td>61SDW7TV</td>
                             <td><a href="">https://www.baidu.com</a></td>
-                            <td>2020-12-31 14:00:00</td>
-                            <td>2020-12-31 15:00:00</td>
+                            <td>2020-12-31 14:00</td>
+                            <td>2020-12-31 15:00</td>
                             <td><span class="badge badge-success">生效</span></td>
                             <td><span class="badge badge-success">长期</span></td>
                             <td>
-                                <i class="fa fa-cog mr-2" style="cursor:pointer;"></i>
-                                <i class="fa fa-trash-o" style="cursor:pointer;"></i>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>VNL2KLSJD</td>
-                            <td><a href="">https://www.weibo.com</a></td>
-                            <td>2020-12-31 14:00:00</td>
-                            <td>2020-12-31 15:00:00</td>
-                            <td><span class="badge badge-success">生效</span></td>
-                            <td><span class="badge badge-primary">长期</span></td>
-                            <td>
-                                <i class="fa fa-cog mr-2" style="cursor:pointer;"></i>
-                                <i class="fa fa-trash-o" style="cursor:pointer;"></i>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>SJFLK1NZ1</td>
-                            <td><a href="">https://www.juejin.com</a></td>
-                            <td>2020-12-31 14:00:00</td>
-                            <td>2020-12-31 15:00:00</td>
-                            <td><span class="badge badge-danger">失效</span></td>
-                            <td><span class="badge badge-secondary">时效</span></td>
-                            <td>
+                                <i class="fa fa-eye mr-2" style="cursor:pointer;"></i>
                                 <i class="fa fa-cog mr-2" style="cursor:pointer;"></i>
                                 <i class="fa fa-trash-o" style="cursor:pointer;"></i>
                             </td>
@@ -108,37 +83,12 @@
                             <td><input type="checkbox"></td>
                             <td>61SDW7TV</td>
                             <td><a href="">https://www.baidu.com</a></td>
-                            <td>2020-12-31 14:00:00</td>
-                            <td>2020-12-31 15:00:00</td>
-                            <td><span class="badge badge-success">生效</span></td>
-                            <td><span class="badge badge-success">长期</span></td>
-                            <td>
-                                <i class="fa fa-cog mr-2" style="cursor:pointer;"></i>
-                                <i class="fa fa-trash-o" style="cursor:pointer;"></i>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>VNL2KLSJD</td>
-                            <td><a href="">https://www.weibo.com</a></td>
-                            <td>2020-12-31 14:00:00</td>
-                            <td>2020-12-31 15:00:00</td>
-                            <td><span class="badge badge-success">生效</span></td>
-                            <td><span class="badge badge-primary">长期</span></td>
-                            <td>
-                                <i class="fa fa-cog mr-2" style="cursor:pointer;"></i>
-                                <i class="fa fa-trash-o" style="cursor:pointer;"></i>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>SJFLK1NZ1</td>
-                            <td><a href="">https://www.juejin.com</a></td>
-                            <td>2020-12-31 14:00:00</td>
-                            <td>2020-12-31 15:00:00</td>
+                            <td>2020-12-31 14:00</td>
+                            <td>2020-12-31 15:00</td>
                             <td><span class="badge badge-danger">失效</span></td>
-                            <td><span class="badge badge-secondary">时效</span></td>
+                            <td><span class="badge badge-warning">短期</span></td>
                             <td>
+                                <i class="fa fa-eye mr-2" style="cursor:pointer;"></i>
                                 <i class="fa fa-cog mr-2" style="cursor:pointer;"></i>
                                 <i class="fa fa-trash-o" style="cursor:pointer;"></i>
                             </td>
@@ -147,76 +97,12 @@
                             <td><input type="checkbox"></td>
                             <td>61SDW7TV</td>
                             <td><a href="">https://www.baidu.com</a></td>
-                            <td>2020-12-31 14:00:00</td>
-                            <td>2020-12-31 15:00:00</td>
-                            <td><span class="badge badge-success">生效</span></td>
+                            <td>2020-12-31 14:00</td>
+                            <td>2020-12-31 15:00</td>
+                            <td><span class="badge badge-danger">失效</span></td>
                             <td><span class="badge badge-success">长期</span></td>
                             <td>
-                                <i class="fa fa-cog mr-2" style="cursor:pointer;"></i>
-                                <i class="fa fa-trash-o" style="cursor:pointer;"></i>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>VNL2KLSJD</td>
-                            <td><a href="">https://www.weibo.com</a></td>
-                            <td>2020-12-31 14:00:00</td>
-                            <td>2020-12-31 15:00:00</td>
-                            <td><span class="badge badge-success">生效</span></td>
-                            <td><span class="badge badge-primary">长期</span></td>
-                            <td>
-                                <i class="fa fa-cog mr-2" style="cursor:pointer;"></i>
-                                <i class="fa fa-trash-o" style="cursor:pointer;"></i>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>SJFLK1NZ1</td>
-                            <td><a href="">https://www.juejin.com</a></td>
-                            <td>2020-12-31 14:00:00</td>
-                            <td>2020-12-31 15:00:00</td>
-                            <td><span class="badge badge-danger">失效</span></td>
-                            <td><span class="badge badge-secondary">时效</span></td>
-                            <td>
-                                <i class="fa fa-cog mr-2" style="cursor:pointer;"></i>
-                                <i class="fa fa-trash-o" style="cursor:pointer;"></i>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>61SDW7TV</td>
-                            <td><a href="">https://www.baidu.com</a></td>
-                            <td>2020-12-31 14:00:00</td>
-                            <td>2020-12-31 15:00:00</td>
-                            <td><span class="badge badge-success">生效</span></td>
-                            <td><span class="badge badge-success">长期</span></td>
-                            <td>
-                                <i class="fa fa-cog mr-2" style="cursor:pointer;"></i>
-                                <i class="fa fa-trash-o" style="cursor:pointer;"></i>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>VNL2KLSJD</td>
-                            <td><a href="">https://www.weibo.com</a></td>
-                            <td>2020-12-31 14:00:00</td>
-                            <td>2020-12-31 15:00:00</td>
-                            <td><span class="badge badge-success">生效</span></td>
-                            <td><span class="badge badge-primary">长期</span></td>
-                            <td>
-                                <i class="fa fa-cog mr-2" style="cursor:pointer;"></i>
-                                <i class="fa fa-trash-o" style="cursor:pointer;"></i>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>SJFLK1NZ1</td>
-                            <td><a href="">https://www.juejin.com</a></td>
-                            <td>2020-12-31 14:00:00</td>
-                            <td>2020-12-31 15:00:00</td>
-                            <td><span class="badge badge-danger">失效</span></td>
-                            <td><span class="badge badge-secondary">时效</span></td>
-                            <td>
+                                <i class="fa fa-eye mr-2" style="cursor:pointer;"></i>
                                 <i class="fa fa-cog mr-2" style="cursor:pointer;"></i>
                                 <i class="fa fa-trash-o" style="cursor:pointer;"></i>
                             </td>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('asserts/bootstrap/css/bootstrap.min.css') }}">
-    <title>登录</title>
+    <title>注册</title>
     <style>
         .mt-10 {
             margin-top: 5em;
@@ -22,11 +22,17 @@
                             @csrf()
                             <div class="form-group">
                                 <label for="">邮箱</label>
-                                <input type="text" class="form-control" name="email">
+                                <input type="text" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" value="{{ old('email') }}" name="email">
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('email') }}
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="">密码</label>
-                                <input type="password" class="form-control" name="password">
+                                <input type="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" name="password">
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('password') }}
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="">确认密码</label>

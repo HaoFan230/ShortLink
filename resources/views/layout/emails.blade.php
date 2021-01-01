@@ -47,10 +47,6 @@
             width: 100%;
         }
     </style>
-
-    <!-- 这里引入各个组件里的style部分 -->
-    @yield('style')
-
 </head>
 <body>
     <header>
@@ -63,27 +59,7 @@
                 <div class="collapse navbar-collapse" id="navbarToggler">
                     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('home.index') }}">仪表盘</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('links.index') }}">短链接</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">开发者工具</a>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav justify-content-end">
-                        <li class="nav-item dropdown ">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                                你好，{{ Auth::user()->name }}
-                            </a>
-                            <div class="dropdown-menu">
-                                <button class="dropdown-item">个人设置</button>
-                                <form action="{{ route('logout.store') }}" method="post">
-                                    @csrf()
-                                    <button class="dropdown-item">账户登出</button>
-                                </form>
-                            </div>
+                            <a class="nav-link" href="{{ route('login.index') }}">仪表盘</a>
                         </li>
                     </ul>
                 </div>
@@ -91,22 +67,16 @@
         </nav>
     </header>
 
-
     <main class="container mt-5">
         <section class="row text-white align-items-center">
             <div class="col-8">
                 <h1>{{ $pageInfo['title'] }}</h1>
                 <p class="lead">{{ $pageInfo['description'] }}</p>
             </div>
-            @if($showBackButton)
-            <div class="col-4 d-flex justify-content-end">
-                <a class="btn bg-white text-primary font-weight-bold" href="{{ url()->previous() }}">返回上一页</a>
-            </div>
-            @endif
         </section>
 
-        <!-- 这里引入各个组件里的content部分 -->
         @yield('content')
+
     </main>
     
     <footer class="mt-5" id='footer'>
@@ -115,16 +85,7 @@
         </div>
     </footer>
 
-    @yield('script')
-
     <script>
-        //判断当前页面，并添加active类至导航菜单 
-        (function() {
-            const links = document.querySelectorAll('.nav-link');
-            const key = '<?= $pageInfo['title'] ?>';
-            [...links].find(el=>el.textContent == key)?.classList.add('active');
-        })();
-
         //判断footer的position是啥属性 
         (function() {
             const flag = document.body.offsetHeight > window.screen.availHeight;

@@ -38,20 +38,20 @@ class LoginController extends Controller
     {   
         // 登录参数验证
         $request->validate([
-            'email'=>'required|filled|email|exists:users,email',
-            'password'=>'required|filled|between:8,16',
+            'email'=> 'required|filled|email|exists:users,email',
+            'password'=> 'required|filled|between:8,16',
         ],[
-            'email.required'=>'请输入邮箱地址',
-            'email.exists'=>'当前用户不存在',
-            'email.email'=>'邮箱格式不正确,请重新输入',
-            'password.required'=>'请输入账户密码',
-            'password.between'=>'密码长度应在8-16位之间',
+            'email.required'=> '请输入邮箱地址',
+            'email.exists'=> '当前用户不存在',
+            'email.email'=> '邮箱格式不正确,请重新输入',
+            'password.required'=> '请输入账户密码',
+            'password.between'=> '密码长度应在8-16位之间',
         ]);
 
         // 使用Laravel手动认证
         $AuthStatus = Auth::attempt([
             'email'=> $request->email,
-            'password'=> $request->password
+            'password'=> $request->password,
         ]);
 
         if(!$AuthStatus) return redirect()->back()->withErrors([

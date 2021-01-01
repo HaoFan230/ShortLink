@@ -9,6 +9,14 @@
         .mt-10 {
             margin-top: 5em;
         }
+        .alert-custom {
+            width: 240px;
+            position: fixed !important;
+            left: 50%; 
+            top: 0px;
+            transform: translateX(-50%);
+        }
+
     </style>
 </head>
 <body>
