@@ -86,9 +86,13 @@
                                     </span>
                                 </td>
                                 <td>
-                                    <a href="{{ route('link.show',$link->shortkey) }}"><i class="fa fa-eye mr-2" style="cursor:pointer;"></i></a>
-                                    <i class="fa fa-cog mr-2" style="cursor:pointer;"></i>
-                                    <i class="fa fa-trash-o" style="cursor:pointer;"></i>
+                                    <a href="{{ route('link.show',$link->shortkey) }}" target="_blank"><i class="fa fa-eye mr-2" style="cursor:pointer;"></i></a>
+                                    <a href="{{ route('links.edit',$link->shortkey) }}"><i class="fa fa-cog mr-2" style="cursor:pointer;"></i></a>
+                                    <form style="display:inline;" action="{{ route('links.update',$link->shortkey) }}" method="POST">
+                                        @csrf()
+                                        @method('delete')
+                                        <i class="fa fa-trash-o text-danger activeSubmit" style="cursor:pointer;"></i>
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach
@@ -110,4 +114,14 @@
         </div>
     </div>
 </section>
+@endsection
+
+@section('script')
+<script>
+    window.onload = e => {
+        $('.activeSubmit').click(function() {
+            $(this).parent().submit();
+        });
+    }
+</script>
 @endsection

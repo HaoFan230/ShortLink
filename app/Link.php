@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Auth;
 
 class Link extends Model
 {
@@ -22,5 +23,13 @@ class Link extends Model
 
     public function getRouteKeyName() {
         return 'shortkey';
+    }
+
+    // 判断是不是当前用户所创建的短链接
+    public function resolveRouteBinding($value,$field = null) {
+        return $this->where([
+            'shortkey'=> $value,
+            'user_id'=> Auth::user()->id
+        ])->firstOrFail();
     }
 }
