@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Page\Dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Link;
 use ViewUtils;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -16,11 +18,14 @@ class HomeController extends Controller
     public function index()
     {
 
+        $linkCount = Link::whereUserId(Auth::user()->id)->get()->count();
+
         $viewConfig = ViewUtils::generateConfig([
             'pageInfo'=>[
                 'title'=>'仪表盘',
                 'description'=>'浏览一下今日的情况',
-            ]
+            ],
+            'linkCount'=> $linkCount,
         ]);
 
         return view('Dashboard.home',$viewConfig);

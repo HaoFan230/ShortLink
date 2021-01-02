@@ -16,6 +16,8 @@ class CheckUserStatus
      */
     public function handle($request, Closure $next)
     {
+        
+
         // 用户有三种登录状态: normal , freeze , unauthenticated
         if(Auth::user()->status == "freeze") return redirect()->route('login.index')->withErrors([
             'email'=>'该账户已冻结,请联系管理员',

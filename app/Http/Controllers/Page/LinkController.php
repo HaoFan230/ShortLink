@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Page\Auth;
+namespace App\Http\Controllers\Page;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Auth;
+use App\Link;
 
-class LoginController extends Controller
+class LinkController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class LoginController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        return view('login');
+    {
+        //
     }
 
     /**
@@ -35,30 +35,8 @@ class LoginController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
-        // 登录参数验证
-        $request->validate([
-            'email'=> 'required|filled|email|exists:users,email',
-            'password'=> 'required|filled|between:8,16',
-        ],[
-            'email.required'=> '请输入邮箱地址',
-            'email.exists'=> '当前用户不存在',
-            'email.email'=> '邮箱格式不正确,请重新输入',
-            'password.required'=> '请输入账户密码',
-            'password.between'=> '密码长度应在8-16位之间',
-        ]);
-
-        // 使用Laravel手动认证
-        $AuthStatus = Auth::attempt([
-            'email'=> $request->email,
-            'password'=> $request->password,
-        ]);
-
-        if(!$AuthStatus) return redirect()->back()->withErrors([
-            'password'=>'密码错误! 请重新登录',
-        ])->withInput();
-
-        return redirect()->route('home.index');
+    {
+        //
     }
 
     /**
@@ -67,9 +45,10 @@ class LoginController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show(Link $link)
+    {   
+        // 如果状态不对劲，那么就跳转到根路由
+        return $link->status ? redirect()->away($link->url) : redirect('/');
     }
 
     /**

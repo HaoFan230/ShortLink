@@ -116,7 +116,7 @@
                         <div class="card h-150">
                             <div class="card-body">
                                 <h4><i class="fa fa-external-link mr-1"></i>链接数</h4>
-                                <p class="lead mt-3 font-weight-bold text-primary">3,000,000</p>
+                                <p class="lead mt-3 font-weight-bold text-primary">{{ $linkCount }}</p>
                             </div>
                         </div>
                     </div>

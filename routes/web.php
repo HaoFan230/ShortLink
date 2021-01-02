@@ -17,13 +17,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resource('/link','Page\LinkController');
+
 // 验证邮箱
 Route::resource('/checkemail','Page\Auth\CheckEmailController');
 
 // 这里分组的路由都跟用户认证有关
 Route::group(['prefix'=>'auth'],function() {
-    Route::resource('register','Page\Auth\RegisterController');
-    Route::resource('login','Page\Auth\LoginController');
+    Route::resource('register','Page\Auth\RegisterController')->middleware('guest');
+    Route::resource('login','Page\Auth\LoginController')->middleware('guest');
     Route::resource('logout','Page\Auth\LogoutController')->middleware('auth');
 });
 
