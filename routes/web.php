@@ -17,20 +17,35 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// 跳转路由
 Route::resource('/link','Page\LinkController');
 
 // 验证邮箱
 Route::resource('/checkemail','Page\Auth\CheckEmailController');
 
-// 这里分组的路由都跟用户认证有关
-Route::group(['prefix'=>'auth'],function() {
-    Route::resource('register','Page\Auth\RegisterController')->middleware('guest');
-    Route::resource('login','Page\Auth\LoginController')->middleware('guest');
-    Route::resource('logout','Page\Auth\LogoutController')->middleware('auth');
+// 来宾路由
+Route::group(['middleware'=>'guest'],function() {
+
+    // 认证相关
+    Route::group(['prefix'=>'auth'],function() {
+        Route::resource('login','Page\Auth\LoginController');    
+        Route::resource('register','Page\Auth\RegisterController');
+        Route::resource('password_reset','Page\Auth\PasswordResetController');
+    });
+    
 });
 
-// 仪表盘等后台路由
-Route::group(['prefix'=>'dashboard','middleware'=>['auth','CheckUserStatus']],function() {
-    Route::resource('home','Page\Dashboard\HomeController');
-    Route::resource('links','Page\Dashboard\LinksController');
+// 认证路由
+Route::group(['middleware'=>'auth'],function() {
+
+    // 登出
+    Route::resource('auth/logout','Page\Auth\LogoutController');
+
+    // 仪表盘等后台路由
+    Route::group(['prefix'=>'dashboard','middleware'=>'CheckUserStatus'],function() {
+        
+        // 各项菜单
+        Route::resource('home','Page\Dashboard\HomeController');
+        Route::resource('links','Page\Dashboard\LinksController');
+    });
 });

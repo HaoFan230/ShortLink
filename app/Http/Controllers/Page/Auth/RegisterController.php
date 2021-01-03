@@ -61,7 +61,10 @@ class RegisterController extends Controller
         $this->sendVerifyEmail($request->email);
 
         // 重定向至登录页面
-        return redirect()->route('login.index');
+        return redirect()->route('login.index')->withInput([
+            'success'=> '注册成功',
+            'email'=> $request->email
+        ]);
     }
 
     /**

@@ -52,7 +52,7 @@ class LoginController extends Controller
         $AuthStatus = Auth::attempt([
             'email'=> $request->email,
             'password'=> $request->password,
-        ]);
+        ],!!$request->remember ?? false);
 
         if(!$AuthStatus) return redirect()->back()->withErrors([
             'password'=>'密码错误! 请重新登录',
