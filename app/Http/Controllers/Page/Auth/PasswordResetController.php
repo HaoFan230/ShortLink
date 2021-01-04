@@ -49,15 +49,25 @@ class PasswordResetController extends Controller
     {
         // 参数验证
         $request->validate([
-            'email'=> 'required|filled|email|exists:users,email',
+            'email'=> 'required|filled|email',
         ],[
             'email.required'=> '请输入邮箱地址',
-            'email.exists'=> '当前用户不存在',
             'email.email'=> '邮箱格式不正确,请重新输入',
         ]);
         
+        $viewConfig = ViewUtils::generateConfig([
+            'pageInfo'=> [
+                'title'=> '邮件已发送',
+                'description'=> '快进邮箱看看吧',
+            ],
+        ]);
+
         // 获取当前邮箱账户的状态
-        $user = User::whereEmail($request->email)->first();
+        $user = User::whereEmail($request->email)->firstOrFail();
+        
+        // 如果不存在用户，也提示成功发送邮件
+        if(!$user) return view('emails.result',$viewConfig);
+
         // 如果状态是冻结的,返回提示
         if($user->status == "freeze") return redirect()->route('password_reset.index')
                                     ->withErrors([
@@ -67,12 +77,6 @@ class PasswordResetController extends Controller
         // 发送重置密码邮件
         $this->sendPassowrdResetEmail($request->email);
         
-        $viewConfig = ViewUtils::generateConfig([
-            'pageInfo'=> [
-                'title'=> '邮件已发送',
-                'description'=> '快进邮箱看看吧',
-            ],
-        ]);
 
         return view('emails.result',$viewConfig);
     }

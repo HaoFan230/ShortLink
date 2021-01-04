@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Page\Auth;
+namespace App\Http\Controllers\Page\Dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Auth;
+use ViewUtils;
 
-class LoginController extends Controller
+class PeopleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class LoginController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        return view('login');
+    {
+        //
     }
 
     /**
@@ -35,30 +35,8 @@ class LoginController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
-        // 登录参数验证
-        $request->validate([
-            'email'=> 'required|filled|email|exists:users,email',
-            'password'=> 'required|filled|between:8,16',
-        ],[
-            'email.required'=> '请输入邮箱地址',
-            'email.exists'=> '邮箱或者密码输入不正确',
-            'email.email'=> '邮箱格式不正确,请重新输入',
-            'password.required'=> '请输入账户密码',
-            'password.between'=> '密码长度应在8-16位之间',
-        ]);
-
-        // 使用Laravel手动认证
-        $AuthStatus = Auth::attempt([
-            'email'=> $request->email,
-            'password'=> $request->password,
-        ],!!$request->remember ?? false);
-
-        if(!$AuthStatus) return redirect()->back()->withErrors([
-            'password'=>'邮箱或者密码输入不正确',
-        ])->withInput();
-
-        return redirect()->route('home.index');
+    {
+        //
     }
 
     /**
@@ -80,7 +58,14 @@ class LoginController extends Controller
      */
     public function edit($id)
     {
-        //
+        $viewConfig = ViewUtils::generateConfig([
+            'pageInfo'=>[
+                'title'=>'个人设置',
+                'description'=>'嘘,不要告诉任何人',
+            ],
+        ]);
+
+        return view('Dashboard.People.edit',$viewConfig); 
     }
 
     /**

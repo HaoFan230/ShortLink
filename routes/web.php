@@ -47,5 +47,10 @@ Route::group(['middleware'=>'auth'],function() {
         // 各项菜单
         Route::resource('home','Page\Dashboard\HomeController');
         Route::resource('links','Page\Dashboard\LinksController');
+        Route::resource('export','Page\Dashboard\ExportController');
+
+        // 个人信息修改
+        Route::resource('people','Page\Dashboard\PeopleController');
+
     });
 });

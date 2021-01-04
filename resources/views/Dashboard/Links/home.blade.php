@@ -20,7 +20,7 @@
                         <p class="text-secondary mt-1">共计 <span class="mr-1">{{ $linkList->total() }}</span>例</p>
                     </div>
                     <div>
-                        <button class="btn btn-light text-primary mr-2"><i class="fa fa-save mr-1"></i>导出</button>
+                        <a class="btn btn-light text-primary mr-2" taget="_blank" href="{{ route('export.index') }}"><i class="fa fa-save mr-1"></i>导出</a>
                         <a class="btn btn-primary" href="{{ route('links.create') }}"><i class="fa fa-angle-right mr-1"></i>创建新连接</a>
                     </div>
                 </div>
@@ -29,22 +29,22 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-white"><i class="fa fa-search"></i></span>
                         </div>
-                        <input type="search" class="form-control" placeholder="搜索 ...">
+                        <input type="search" name="key" value="{{ $request->key ?? null}}" class="form-control" placeholder="搜索URL ...">
                     </div>
                     <div class="form-group mr-4">
                         <label for="status" class="mr-2">状态: </label>
                         <select name="status" id="status" style="width:160px;" class="form-control">
-                            <option value="all">全部</option>
-                            <option value="valid">生效</option>
-                            <option value="invalid">失效</option>
+                            <option value="all" {{ $request->status == 'all' ? 'selected' : '' }}>全部</option>
+                            <option value="valid" {{ $request->status == 'valid' ? 'selected' : '' }}>生效</option>
+                            <option value="invalid" {{ $request->status == 'invalid' ? 'selected' : '' }}>失效</option>
                         </select>
                     </div>
                     <div class="form-group mr-4">
                         <label for="type" class="mr-2">类型: </label>
                         <select name="type" id="type" style="width:160px;" class="form-control">
-                            <option value="all">全部</option>
-                            <option value="longterm">长期</option>
-                            <option value="shortterm">时效</option>
+                            <option value="all" {{ $request->type == 'all' ? 'selected' : '' }}>全部</option>
+                            <option value="longterm" {{ $request->type == 'longterm' ? 'selected' : '' }}>长期</option>
+                            <option value="shortterm" {{ $request->type == 'shortterm' ? 'selected' : '' }}>短期</option>
                         </select>
                     </div>
                     <div class="form-group mr-4">
@@ -88,6 +88,7 @@
                                 <td>
                                     <a href="{{ route('link.show',$link->shortkey) }}" target="_blank"><i class="fa fa-eye mr-2" style="cursor:pointer;"></i></a>
                                     <a href="{{ route('links.edit',$link->shortkey) }}"><i class="fa fa-cog mr-2" style="cursor:pointer;"></i></a>
+                                    <i class="fa fa-qrcode mr-2 qrcode-download" data-link="{{ $link->url }}" data-container="body" data-toggle="popover" data-placement="top" data-content="点击下载二维码图片"></i>
                                     <form style="display:inline;" action="{{ route('links.update',$link->shortkey) }}" method="POST">
                                         @csrf()
                                         @method('delete')
@@ -122,6 +123,10 @@
         $('.activeSubmit').click(function() {
             $(this).parent().submit();
         });
+
+        $('[data-toggle="popover"]').popover({
+            trigger: 'hover',
+        })
     }
 </script>
 @endsection

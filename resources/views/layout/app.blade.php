@@ -78,7 +78,7 @@
                                 你好，{{ Auth::user()->name }}
                             </a>
                             <div class="dropdown-menu">
-                                <button class="dropdown-item">个人设置</button>
+                                <a class="dropdown-item" href="{{ route('people.edit',Auth::user()->name) }}">个人设置</a>
                                 <form action="{{ route('logout.store') }}" method="post">
                                     @csrf()
                                     <button class="dropdown-item">账户登出</button>

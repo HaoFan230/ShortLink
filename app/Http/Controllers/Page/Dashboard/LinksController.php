@@ -16,11 +16,32 @@ class LinksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
 
+        // Tips: 在想搜索功能要不要用Vue?
+
         // 获取用户创建的所有连接
-        $links = Link::whereUserId(Auth::user()->id)->paginate(30);
+        $links = Link::whereUserId(Auth::user()->id)
+            ->where(function($query) use($request) {
+                if(in_array($request->status,['valid','invalid'])) {
+                    $request->status == 'valid' 
+                    ? $query->where('expiratime',null)
+                    : $query->where('expiratime','<',Date('Y-m-d H:i:s'));
+                }
+            })
+            ->where(function($query) use($request) {
+                if(in_array($request->type,['longterm','shortterm'])) {
+                    $query->where('type',$request->type);
+                }
+            })
+            ->where(function($query) use($request) {
+                if(is_string($request->key)) {
+                    // 模糊查询一下关键字
+                    $query->where('url','like',"%{$request->key}%");
+                }
+            })
+            ->paginate(30);
 
         $viewConfig = ViewUtils::generateConfig([
             'pageInfo'=>[
@@ -28,6 +49,7 @@ class LinksController extends Controller
                 'description'=> '注意短链接的时效性',
             ],
             'linkList'=> $links,
+            'request'=> $request
         ]);
 
         return view('Dashboard.Links.home',$viewConfig); 
@@ -203,4 +225,5 @@ class LinksController extends Controller
 
         return redirect()->back();
     }
+
 }

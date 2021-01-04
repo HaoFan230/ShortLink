@@ -1,21 +1,30 @@
 <?php
 
-namespace App\Http\Controllers\Page\Auth;
+namespace App\Http\Controllers\Page\Dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Auth;
+use App\Exports\LinksExport;
+use Maatwebsite\Excel\Facades\Excel;
 
-class LoginController extends Controller
+class ExportController extends Controller
 {
+    public function __construct() 
+    {
+        // 设置节流器
+        $this->middleware('throttle:5,1')->only([
+            'store'
+        ]);
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        return view('login');
+    {
+        return Excel::download(new LinksExport, Date('Y-m-d H:i:s').'_links.xlsx');
     }
 
     /**
@@ -35,30 +44,8 @@ class LoginController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
-        // 登录参数验证
-        $request->validate([
-            'email'=> 'required|filled|email|exists:users,email',
-            'password'=> 'required|filled|between:8,16',
-        ],[
-            'email.required'=> '请输入邮箱地址',
-            'email.exists'=> '邮箱或者密码输入不正确',
-            'email.email'=> '邮箱格式不正确,请重新输入',
-            'password.required'=> '请输入账户密码',
-            'password.between'=> '密码长度应在8-16位之间',
-        ]);
-
-        // 使用Laravel手动认证
-        $AuthStatus = Auth::attempt([
-            'email'=> $request->email,
-            'password'=> $request->password,
-        ],!!$request->remember ?? false);
-
-        if(!$AuthStatus) return redirect()->back()->withErrors([
-            'password'=>'邮箱或者密码输入不正确',
-        ])->withInput();
-
-        return redirect()->route('home.index');
+    {
+        //
     }
 
     /**
