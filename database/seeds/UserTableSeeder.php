@@ -16,6 +16,7 @@ class UserTableSeeder extends Seeder
             'name'=> 'root',
             'email'=> 'root@shortlink.com',
             'password'=> bcrypt('rootpass...123'),
+            'access_token'=> base64_encode(bcrypt('root@shortlink.com')),
             'role'=> 'root',
             'status'=> 'normal',
             'created_at'=> date('Y-m-d H:i:s'),

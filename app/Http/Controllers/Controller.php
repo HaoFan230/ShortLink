@@ -19,19 +19,24 @@ class Controller extends BaseController
      * 添加过期时间的Key
      *
      * @param  String  $key
-     * @param  Integer $hours
+     * @param  Integer $min
+     * @param  String  $oldKey
      * @return String  $encryptKey
      */
-    protected function addRedisExpireKey($key,$hours = 1)
+    protected function addRedisExpireKey($key,$min = 60,$oldKey = false)
     {
-        if($hours < 1) $hours = 1;
+        if($min < 1) $min = 1;
+        
+        $encryptKey = null;
+        
+        // 如果oldkey还存在， 那么就直接设置过期时间
+        if(!($oldKey && Redis::get($oldKey))) {
+            $encryptKey = Hash::make($key);
+            Redis::set($encryptKey,$key);
+        }else $encryptKey = $oldKey;
 
-        // 通过Redis设置Key的过期时间
-        $encryptKey = Hash::make($key);
-        Redis::set($encryptKey,$key);
-
-        // 过期时间为一个小时
-        Redis::expire($encryptKey,$hours * 3600);
+        // 过期时间默认为一个小时
+        Redis::expire($encryptKey,$min * 60);
 
         return $encryptKey;
     }
@@ -59,19 +64,19 @@ class Controller extends BaseController
     /**
      * 发送验证邮件
      *
-     * @param  String  $emailAddress
-     * @param  Integer   $hours
+     * @param  String    $emailAddress
+     * @param  Integer   $min
      * @return Boolean 
      */
-    protected function sendVerifyEmail($email , $hours = 1) 
+    protected function sendVerifyEmail($email , $min = 60) 
     {
 
         // 添加一个短期的Email Key
-        $key = $this->addRedisExpireKey($email, $hours);
+        $key = $this->addRedisExpireKey($email, $min);
 
         // 发送邮件的步骤
         $viewConfig = [
-            'expiraTime'=> Carbon::now()->addHours($hours),
+            'expiraTime'=> Carbon::now()->addHours(60 / $min),
             // 这里需要用base64编码，不然laravel路由会识别错误
             'emailAuthAddress'=> route('checkemail.show',base64_encode($key)),
         ];
@@ -83,18 +88,18 @@ class Controller extends BaseController
     /**
      * 发送重置密码邮件
      *
-     * @param  String  $emailAddress
-     * @param  Integer   $hours
+     * @param  String    $emailAddress
+     * @param  Integer   $min
      * @return Boolean 
      */
-    protected function sendPassowrdResetEmail($email , $hours = 1) 
+    protected function sendPassowrdResetEmail($email , $min = 60) 
     {
 
-        // 添加一个短期的Email Key
-        $key = $this->addRedisExpireKey($email, $hours);
+        // 添加一个短期的Email Key        
+        $key = $this->addRedisExpireKey($email, $min);
 
         $viewConfig = [
-            'expiraTime'=> Carbon::now()->addHours($hours),
+            'expiraTime'=> Carbon::now()->addHours(60 / $min),
             'emailAuthAddress'=> route('password_reset.show',base64_encode($key)),
         ];
 

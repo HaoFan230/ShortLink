@@ -69,7 +69,7 @@
                             <a class="nav-link" href="{{ route('links.index') }}">短链接</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">开发者工具</a>
+                            <a class="nav-link" href="{{ route('developer.index') }}">开发者工具</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav justify-content-end">

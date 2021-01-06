@@ -48,9 +48,9 @@ Route::group(['middleware'=>'auth'],function() {
         Route::resource('home','Page\Dashboard\HomeController');
         Route::resource('links','Page\Dashboard\LinksController');
         Route::resource('export','Page\Dashboard\ExportController');
-
         // 个人信息修改
-        Route::resource('people','Page\Dashboard\PeopleController');
-
+        Route::resource('people','Page\Dashboard\PeopleController')->parameters(['people'=>'user']);
+        // 开发者
+        Route::resource('developer','Page\Dashboard\DeveloperController');
     });
 });

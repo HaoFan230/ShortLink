@@ -106,7 +106,7 @@
                             <div class="card-body">
                                 <h4><i class="fa fa-cog mr-1"></i>设置</h4>
                                 <p>情况不对劲? 快重新设置选项</p>
-                                <button class="btn btn-primary">前往设置</button>
+                                <a class="btn btn-primary" href="{{ route('people.edit',Auth::user()->name) }}">前往设置</a>
                             </div>
                         </div>
                     </div>

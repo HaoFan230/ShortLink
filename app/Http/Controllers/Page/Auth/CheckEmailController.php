@@ -63,7 +63,7 @@ class CheckEmailController extends Controller
     {
         // 验证用户的状态
         if($this->verifyUserStatus()) return redirect()->route('home.index');
-
+        
         $this->sendVerifyEmail(Auth::user()->email);
 
         return redirect()->route('checkemail.index')->withInput([
